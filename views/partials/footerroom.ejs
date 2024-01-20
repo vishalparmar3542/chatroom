@@ -1,0 +1,43 @@
+
+
+<div class="footer">
+    <p>Made with ❤️ by The DeveloperMania</p>
+  </div>
+
+  
+</div> 
+
+   
+    <script src="/socket.io/socket.io.js">
+    </script>
+    <script>
+        console.log("hello its working");
+        const sendMsgBtn=document.getElementById("sendmsgbtn");
+const sendMsgtText=document.getElementById("sendmsgtext");
+const msgConatainer=document.getElementById("message-container");
+        const socket = io();
+        socket.on("serverMessage",data=>{
+            const newp=document.createElement("p");
+            const newh=document.createElement("h3");
+            const nodep = document.createTextNode(data);
+            const nodeh = document.createTextNode("Vishal");
+              newp.appendChild(nodep);
+              newh.appendChild(nodeh);
+              msgConatainer.appendChild(newp);
+              msgConatainer.appendChild(newh);
+        });
+
+
+function sendMessage(){
+      const msgText=sendMsgtText.value;
+      console.log(msgText);
+      socket.emit("message",msgText);
+}
+
+
+    </script>
+
+
+
+</body>
+</html>

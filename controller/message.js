@@ -1,16 +1,19 @@
 import { chatRoomModel } from "../models/chatroom.js"
 import mongoose from "mongoose";
+
 const messageSchema=mongoose.model('chatRoom',chatRoomModel);
 
 
 export const getAllMessage=async(req,res)=>{
-    const data=await messageSchema.find({});
-    console.log("called get all");
-    res.status(200).send(data);
+   console.log(req.session)
+    const data =await messageSchema.find({}).sort({date: 'desc'}).limit(10).exec( );
+    
+    res.status(200).render("chatroom.ejs",{data:data});
 }
 
 export const addMessage=async(req,res)=>{
     try{
+        
     const msg=new messageSchema({message:req.body.message,author:req.body.author});
     await msg.save();
     console.log("Message entered");

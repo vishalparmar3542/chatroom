@@ -1,0 +1,16 @@
+<%- include("partials/headerroom") -%>
+<h1>chat Room</h1>
+<div id="message-container"></div>
+<% for(var i=0;i<data.length;i++){ %>
+        <p><%=data[i].author%> :</p>
+        <h3><%=data[i].message%></h3>
+       <br/>
+   
+    <%}%>
+</div>
+<input id="sendmsgtext" type="text">
+
+<input type="button" onclick="sendMessage()" id="sendmsgbtn" value="send">
+<a class="btn btn-light btn-lg" href="/logout" role="button">Log Out</a>
+
+<%- include("partials/footerroom") -%>
