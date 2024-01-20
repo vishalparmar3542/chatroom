@@ -12,26 +12,49 @@
     </script>
     <script>
         console.log("hello its working");
+        
+        window.scrollTo(0,document.body.scrollHeight);
+
         const sendMsgBtn=document.getElementById("sendmsgbtn");
 const sendMsgtText=document.getElementById("sendmsgtext");
 const msgConatainer=document.getElementById("message-container");
+const author=document.getElementById("AUTHOR");
+
         const socket = io();
-        socket.on("serverMessage",data=>{
-            const newp=document.createElement("p");
+
+   function addmessage(msg,name){
+
+          const newp=document.createElement("p");
             const newh=document.createElement("h3");
-            const nodep = document.createTextNode(data);
-            const nodeh = document.createTextNode("Vishal");
+            const nodep = document.createTextNode(msg);
+            const nodeh = document.createTextNode(name);
               newp.appendChild(nodep);
               newh.appendChild(nodeh);
-              msgConatainer.appendChild(newp);
-              msgConatainer.appendChild(newh);
+
+              g = document.createElement('div');
+                 g.setAttribute("class", "msgdiv");
+                 g.appendChild(newp);
+                  g.appendChild(newh);
+
+              msgConatainer.appendChild(g);
+              window.scrollTo(0,document.body.scrollHeight);
+              
+        }
+
+        socket.on("serverMessage",data=>{
+           addmessage(data[1],data[0])  
         });
 
 
 function sendMessage(){
       const msgText=sendMsgtText.value;
-      console.log(msgText);
+      if(msgText == ""){
+        //skip
+      }else{
       socket.emit("message",msgText);
+     addmessage(author.value,msgText);  
+     sendMsgtText.value="";
+      }        
 }
 
 

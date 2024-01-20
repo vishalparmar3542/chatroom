@@ -1,7 +1,7 @@
 
 export const auth=(req,res,next)=>{
     console.log(req.session);
-    console.log(req.session.user);
+    console.log(req.sessionID);
     if(req.session.user){
         console.log("authenticated");
         next();
@@ -13,7 +13,7 @@ export const auth=(req,res,next)=>{
 
 export const logauth=(req,res,next)=>{
     console.log(req.session);
-    console.log(req.session.user);
+    console.log(req.sessionID);
     if(req.session.user){
         console.log("authenticated alredy");
         res.redirect("/chatroom");

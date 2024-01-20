@@ -14,6 +14,7 @@ export const getlogin=async(req,res)=>{
 export const logout=async(req,res)=>{
      if(req.session.user){
             req.session.user=undefined;
+            req.session.distroy;
      }
     res.status(200).render("home.ejs");
 }

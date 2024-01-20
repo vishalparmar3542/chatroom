@@ -32,6 +32,8 @@ export const signup=async(req,res)=>{
               if(user)
               {
                 console.log(user);
+               
+                req.session.authorized=true;
                 req.session.user={
                     id:user.insertedId,
                     name:name,
@@ -74,6 +76,8 @@ export const login=async(req,res)=>{
             } else {
               if (valid) {
                 //passed password check
+                req.session.authorized=true;
+                
                 req.session.user={
                       id:data[0].id,
                       name:data[0].name,
