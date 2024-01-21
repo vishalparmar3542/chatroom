@@ -1,4 +1,4 @@
-tech used socket.io ,node.js,express,ejs ,monngoose
+tech used : socket.io , node.js , express.js , Ejs ,monngoose
 
 > A web application on which we can join a room after login/signup where we can talk .
 
